@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teacher index{% endblock %}
+
+{% block body %}
+<div class="container col-md-6 mt-5 text-center">
+   <h1 class="text text-success">Teacher List</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Avatar</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for teacher in teachers %}
+            <tr>
+                <td>{{ teacher.id }}</td>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.address }}</td>
+                <td>
+                    <a href="{{ path('teacher_detail',{'id' : teacher.id })}}">
+                        <img src="{{teacher.avatar }}" width="100" height="100">
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('teacher_detail', {'id': teacher.id}) }}">show</a>
+                    <a href="{{ path('teacher_edit', {'id': teacher.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('teacher_add') }}" class="btn btn-success">Add teacher</a>
+    </div>
+{% endblock %}

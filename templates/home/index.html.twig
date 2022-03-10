@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container col-md-7 mt-3 text-center">
+            <div class="text text-danger">
+					<h3> You are logged in as {{ app.user.username }} </h3>
+			    </div> 
+    <img src="{{ asset('images/backgroup.jpg') }}" width="75%" height="75%">
+
+</div>
+{% endblock %}

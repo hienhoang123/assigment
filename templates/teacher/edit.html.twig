@@ -1,0 +1,12 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Teacher{% endblock %}
+
+{% block body %}
+    <div class="container col-md-6 mt-3 text-center">
+   <h2 class="text text-success mb-3">Edit</h2>
+   {{ form (form) }}
+    </div>
+
+{% endblock %}

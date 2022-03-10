@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teacher
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-6 mt-5 text-center">
+		<h1>Teacher Detail</h1>
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ teacher.id }}</td>
+				</tr>
+				<tr>
+					<th>Name</th>
+					<td>{{ teacher.name }}</td>
+				</tr>
+				<tr>
+					<th>Address</th>
+					<td>{{ teacher.address }}</td>
+				</tr>
+				<tr>
+					<th>Phone</th>
+					<td>{{ teacher.phone }}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{ teacher.email }}</td>
+				</tr>
+
+				<img src="{{teacher.avatar }}" width="100" height="100">
+				<tr>
+					<th>Subject</th>
+					<td>
+						{% for subject in teacher.subjects %}
+							<a href="{{ path('subject_detail', {'id' : subject.id })}}">
+								<h6 class="text text-danger">{{ subject.name  }}</h6>
+								
+							</a>
+						{% endfor %}
+					</td>
+					<th></th>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="{{ path('teacher_edit', {'id': teacher.id}) }}" class="btn btn-success">Edit</a>
+
+		<a href="{{ path('teacher_delete', {'id' : teacher.id })}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this teacher ?');">Delete</a>
+	</div>
+{% endblock %}

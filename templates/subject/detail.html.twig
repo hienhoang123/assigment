@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Subject details{% endblock %}
+
+{% block body %}
+<div class="container col-md-6 mt-5 text-center">
+	<h1>Subject detail</h1>
+
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ subject.id }}</td>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<td>{{ subject.name }}</td>
+			</tr>
+			<tr>
+				<th>Time</th>
+				<td>{{ subject.time }}</td>
+			</tr>
+			<tr>
+				<th>Scale score</th>
+				<td>{{ subject.score }}</td>
+			</tr>
+			<tr>
+				<th>Teacher</th>
+				<td>{% for teacher in subject.teachers %}
+					<a href="{{ path('teacher_detail', {'id' : teacher.id })}}">
+						<h6 class="text text-dangours">{{ teacher.name }}</h6>
+					</a>
+				{% endfor %}
+				<td>
+			</tr>
+		</tbody>
+	</table>
+
+    <a href="{{ path('subject_edit', {'id': subject.id}) }}"class="btn btn-success">Edit</a>
+
+	<a href="{{ path('subject_delete', {'id' : subject.id })}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this subject ?');">Delete</a>
+</div>
+{% endblock %}
