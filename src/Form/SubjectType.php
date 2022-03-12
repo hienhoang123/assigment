@@ -20,10 +20,10 @@ class SubjectType extends AbstractType
             ->add('name')
             ->add('time', IntegerType::class,
             [
-                'label' => "time in each class",
+                'label' => "Time in each class",
                 'attr' => [
                     'maxlength' => 10,
-                    'minlength' => 10
+                    'minlength' => 60
                 ]
             ])
             ->add('score', IntegerType::class,
@@ -34,6 +34,7 @@ class SubjectType extends AbstractType
                     'minlength' => 10
                 ]
             ])
+            ->add('cover')
             ->add('Submit', SubmitType::class)
         ;
     }

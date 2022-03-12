@@ -21,33 +21,49 @@ class SubjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Subject::class);
     }
 
+  
+     /**
+      * @return Subject[] Returns an array of Subject objects
+      */
+
+      public function sortSubjectAsc (){
+        return $this->createQueryBuilder('s')
+        ->orderBy('s.name', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function add(Subject $entity, bool $flush = true): void
-    {
-        $this->_em->persist($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
+      * @return Subject[] Returns an array of Subject objects
+      */
+
+      public function sortSubjectDesc (){
+        return $this->createQueryBuilder('s')
+        ->orderBy('s.name', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function remove(Subject $entity, bool $flush = true): void
-    {
-        $this->_em->remove($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
+      * @return Subject[] Returns an array of Subject objects
+      */
+
+    public function searchSubject ($keyword){
+        return $this->createQueryBuilder('s')
+        ->andWhere('s.name Like :key')
+        ->setParameter('key', '%' . $keyword . '%')
+            ->orderBy('s.name', 'ASC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
-    // /**
-    //  * @return Subject[] Returns an array of Subject objects
-    //  */
     /*
     public function findByExampleField($value)
     {

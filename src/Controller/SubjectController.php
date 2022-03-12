@@ -8,16 +8,36 @@ use App\Repository\SubjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/subject")
- */
+
 class SubjectController extends AbstractController
 {
+
     /**
-     * @Route("/", name="subject_index")
+     * @Route("/asc", name="subject_asc")
+     */
+    public function Asc(SubjectRepository $subjectRepository ){
+        $subject = $subjectRepository->sortSubjectAsc();
+        return $this->render('subject/index.html.twig', [
+            'subjects' => $subject
+        ]);
+    }
+
+    /**
+     * @Route("/search", name="subject_search")
+     */
+    public function Search(Request $request, SubjectRepository $repository ){
+        $name = $request->get('word');
+        $subject = $repository->searchSubject($name);
+            return $this->render('subject/index.html.twig', [
+                'subjects' => $subject
+            ]);
+    }
+
+
+    /**
+     * @Route("/subject", name="subject_index")
      */
     public function index()
     {
@@ -95,4 +115,7 @@ class SubjectController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute("subject_index");
     }
+
+    
+
 }

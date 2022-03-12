@@ -6,7 +6,9 @@
 {% block body %}
     <div class="container col-md-6 mt-3 text-center">
    <h2 class="text text-success mb-3">Add new subject</h2>
+   
    {{ form (form) }}
+   <a href="{{ path('subject_index') }}">back to list</a>
     </div>
-    <a href="{{ path('subject_index') }}">back to list</a>
+    
 {% endblock %}

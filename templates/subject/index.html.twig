@@ -4,42 +4,42 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container col-md-6 mt-5 text-center">
+	<div class="container col-md-3 mt-5 text-center">
 		<h1 class="text text-success">Subject List</h1>
+		<a href="{{ path('subject_add') }}" class="btn btn-success">Add author</a>
 
-		<table class="table table-bordered">
+</div>
+		<table class=" container col-md-6 mt-3 table table-bordered alert-danger text-center ">
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Name</th>
+					<th>Name							
+					</th>
+					<th>Cover</th>
 					<th>actions</th>
 				</tr>
 			</thead>
-			<tbody>		
-                {% set i = 0 %}
+
+			<tbody>
+
 				{% for subject in subjects %}
 					<tr>
 						<td>{{ subject.id }}</td>
 						<td>{{ subject.name }}</td>
-                        
-                        
 						<td>
-							<a href="{{ path('subject_detail', {'id': subject.id}) }}">show</a>
-							<a href="{{ path('subject_edit', {'id': subject.id}) }}">edit</a>
+							<a href="{{ path('subject_detail',{'id' : subject.id })}}">
+								<img src="{{subject.cover }}" width="100" height="100">
+							</a>
 						</td>
-                        
-					</tr>
-                    
-                      {% set i = i+1 %}        
-				{% else %}
-					<tr>
-						<td colspan="5">no records found</td>
-					</tr>
-				{% endfor %}
-                <h1>{{ i }}</h1>
-			</tbody>
-		</table>
+						<td>
+							<a href="{{ path('subject_detail', {'id': subject.id}) }}" class="btn btn-danger">show</a>
+							<a href="{{ path('subject_edit', {'id': subject.id}) }}" class= "btn btn-primary">edit</a>
+						</td>
 
-		<a href="{{ path('subject_add') }}" class="btn btn-success">Add author</a>
+					</tr>
+				{% endfor %}		
+			</tbody>
+				
+		</table>
 	</div>
 {% endblock %}

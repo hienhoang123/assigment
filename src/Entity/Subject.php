@@ -39,6 +39,11 @@ class Subject
      */
     private $teachers;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Cover;
+
     public function __construct()
     {
         $this->teachers = new ArrayCollection();
@@ -108,6 +113,18 @@ class Subject
         if ($this->teachers->removeElement($teacher)) {
             $teacher->removeSubject($this);
         }
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->Cover;
+    }
+
+    public function setCover(string $Cover): self
+    {
+        $this->Cover = $Cover;
 
         return $this;
     }
