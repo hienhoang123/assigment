@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="container col-md-6 mt-5 text-center">
+<div class="container col-md-4">{% for flash in app.flashes('Success') %}
+  <p class="alert alert-secondary">{{flash}}</p>  
+{% endfor %}
+</div>
+<h1 class="text text-primary">Class list</h1>
+ <a href="{{path('clase_add')}}" class=" btn btn-primary">Add new class</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Class ID</th>
+            <th>Class Name</th>
+            <th>Number of student</th>
+            <th>Semester</th>
+            <th>Major</th>
+            <th>Menu</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for clase in clases %}
+         <tr>
+            <td>{{clase.id}}</td>
+            <td>
+            <a href="{{path('clase_detail',{'id':clase.id})}}">{{clase.name}}</a>
+            </td>
+            <td>{{clase.number}}</td>
+            <td>{{clase.semester}}</td>
+            <td>{{clase.major}}</td>
+            <td>
+            <a href="{{path('clase_edit',{'id':clase.id})}}" class="btn btn-warning">Edit</a>
+            <a href="{{path('clase_delete',{'id':clase.id})}}" class="btn btn-danger"
+            onclick="return confirm('Are your sure to delete this?');"
+            >Delete</a>
+            </td>
+        </tr>
+    {% endfor %}  
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,19 @@
+
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class="container col-md-6 mt-3">
+		<div class="row text-center">
+			<h1 class="text text-success ">Class name:
+					{{clase.name}}</h1>
+				<h1>Number of student:
+					{{clase.number}}</h1>
+				<h2>Semester:
+					{{clase.semester}}</h2>
+				<h2>Teacher name:
+					{{clase.teacher}}</h2>
+				<h2>Major:
+					{{clase.major}}</h2>
+			</div>
+		</div>
+	</div>
+{% endblock %}
